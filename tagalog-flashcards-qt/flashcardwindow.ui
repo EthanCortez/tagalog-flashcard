@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>FlashcardWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
@@ -38,6 +38,19 @@
     </property>
     <property name="text">
      <string>Not sure</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="flashcardButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>781</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
     </property>
    </widget>
   </widget>
