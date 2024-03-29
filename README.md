@@ -1,2 +1,2 @@
 # tagalog-flashcard
-Repo for application that will utilize spaced repetition to help people learn tagalog.
+QT application which utilizes spaced repetition to help people learn tagalog.
