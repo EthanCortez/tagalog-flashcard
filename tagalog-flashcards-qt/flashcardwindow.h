@@ -2,6 +2,7 @@
 #define FLASHCARDWINDOW_H
 
 #include <QMainWindow>
+#include "flashcardsystem.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,22 +19,15 @@ public:
     FlashcardWindow(QWidget *parent = nullptr);
     ~FlashcardWindow();
 
+private slots:
+    void handleStudyButtonClicked();
+
 private:
 
     Ui::FlashcardWindow *ui;
 
-    // Data structure to store flashcards
-    struct Flashcard {
-        QString question;
-        QString answer;
-    };
-
-    QVector<Flashcard> flashcards; // Vector to store flashcards
-    int currentCardIndex;          // Index of the currently displayed flashcard
-
-    void loadFlashcards(); // Method to load flashcards from storage
-    void saveFlashcards(); // Method to save flashcards to storage
-    void toggleFlashcard();
+    FlashcardSystem flashcards; // Flashcard System class
+    int currentCardIndex;       // Index of the currently displayed flashcard
 };
 
 #endif // FLASHCARDWINDOW_H
