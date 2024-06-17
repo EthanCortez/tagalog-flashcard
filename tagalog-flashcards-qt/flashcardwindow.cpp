@@ -1,15 +1,22 @@
 #include "flashcardwindow.h"
+#include "flipbutton.h"
 #include "./ui_flashcardwindow.h"
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <fstream>
 
 FlashcardWindow::FlashcardWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::FlashcardWindow)
 {
     ui->setupUi(this);
+    loadFlashcards();
+    loadStartPage();
+}
 
+void FlashcardWindow::loadStartPage()
+{
     // Set QMainWindow style
     resize(800,600);
     this->setStyleSheet("QMainWindow {background-color: white;}");
@@ -22,9 +29,9 @@ FlashcardWindow::FlashcardWindow(QWidget *parent)
     titleLabel->setFont(titleFont);
     numStudyLabel->setFont(numStudyFont);
     numStudyLabel->setStyleSheet("background-color: #c6ffc2;"
-        "color: #2c3e50;"
-        "padding: 10px 20px;" // Adjust padding as needed
-        "border-radius: 15px;"); // Adjust border-radius to make edges rounded
+                                 "color: #2c3e50;"
+                                 "padding: 10px 20px;" // Adjust padding as needed
+                                 "border-radius: 15px;"); // Adjust border-radius to make edges rounded
 
 
     QPushButton *studyButton = new QPushButton("Study", this);
@@ -32,15 +39,15 @@ FlashcardWindow::FlashcardWindow(QWidget *parent)
     studyButton->setFont(studyButtonFont);
     studyButton->setFixedSize(250, 80);
     studyButton->setStyleSheet("QPushButton {"
-        "    background-color: #2c3e50;"
-        "    color: white;"
-        "    border: 2px solid #bdc3c7;"
-        "    border-radius: 40px; /* Rounded corners */"
-        "    padding: 10px 15px; /* Padding */"
-        "}"
-        "QPushButton:hover {"
-        "    background-color: #5c80cc; /* Darker shade of blue on hover */"
-        "}");
+                               "    background-color: #2c3e50;"
+                               "    color: white;"
+                               "    border: 2px solid #bdc3c7;"
+                               "    border-radius: 40px;"
+                               "    padding: 10px 15px;"
+                               "}"
+                               "QPushButton:hover {"
+                               "    background-color: #5c80cc;"
+                               "}");
 
     connect(studyButton, &QPushButton::clicked, this, &FlashcardWindow::handleStudyButtonClicked);
 
@@ -62,9 +69,30 @@ FlashcardWindow::FlashcardWindow(QWidget *parent)
     ui->centralWidget->setLayout(layout);
 }
 
+void FlashcardWindow::loadFlashcards()
+{
+    std::ifstream inFile("test.json");
+    json cardarr;
+    inFile >> cardarr;
+
+    for (json::iterator it = cardarr.begin(); it != cardarr.end(); ++it)
+    {
+        std::string question = (*it)["question"].get<std::string>();
+        std::string answer = (*it)["answer"].get<std::string>();
+        flashcardSystem.addFlashcard(question, answer);
+    }
+
+    inFile.close();
+}
+
+
+
 void FlashcardWindow::handleStudyButtonClicked()
 {
-    // Clear the layout of the central widget
+
+    // Check if new flashcards need to be added or study previously added cards
+
+    // Clear the layout of the central widget to replace with new layout
     QLayout *layout = ui->centralWidget->layout();
     if (layout)
     {
@@ -78,25 +106,44 @@ void FlashcardWindow::handleStudyButtonClicked()
         delete layout;
     }
 
-    // Set style sheet for Flashcard Button
-    QPushButton *flashcardButton = new QPushButton("Flashcard Button", this);
-    QFont flashcardButtonFont("Calibri", 20); // Font family and size for QPushButton text
-    flashcardButton->setFont(flashcardButtonFont);
-    flashcardButton->setStyleSheet("background-color: #fafafa; color: white;");
-    flashcardButton->setMinimumHeight(50); // Set the minimum height of Flashcard Button
-    flashcardButton->setMaximumHeight(100); // Set the maximum height of Flashcard Button
+    Flashcard temp = flashcardSystem.getFlashcard(0);
+    QString question = temp.getQuestion();
+    QString answer = temp.getAnswer();
+
+    FlipButton *flipButton = new FlipButton(question, answer, nullptr);
+    QFont flipButtonFont("Calibri", 20);
+    flipButton->setFont(flipButtonFont);
+    flipButton->setStyleSheet("background-color: #fafafa; color: black;");
+    flipButton->setFixedSize(500, 300);
 
     // Set style sheet for Yes Button
     QPushButton *yesButton = new QPushButton("Yes Button", this);
-    yesButton->setStyleSheet("background-color: #c6ffc2; color:  white;");
-    yesButton->setMinimumHeight(50);
-    yesButton->setMaximumHeight(100);
+    yesButton->setFixedSize(245, 80);
+    yesButton->setStyleSheet("QPushButton {"
+                             "background-color: #a8ff96;"
+                             "color: #3b3b3b;"
+                             "border: 2px solid #585c57;"
+                             "border-radius: 10px;"
+                             "padding: 10px 15px;"
+                             "}"
+                             "QPushButton:hover {"
+                             "    background-color: #befcb1;"
+                             "}");
 
     // Set style sheet for No Button
     QPushButton *noButton = new QPushButton("No Button", this);
-    noButton->setStyleSheet("background-color: #ff9ea9; color: white;");
-    noButton->setMinimumHeight(50);
-    noButton->setMaximumHeight(100);
+    noButton->setStyleSheet("background-color: #ff9ea9; color: black;");
+    noButton->setFixedSize(245, 80);
+    noButton->setStyleSheet("QPushButton {"
+                             "background-color: #ff7070;"
+                             "color: #3b3b3b;"
+                             "border: 2px solid #585c57;"
+                             "border-radius: 10px;"
+                             "padding: 10px 15px;"
+                             "}"
+                             "QPushButton:hover {"
+                             "    background-color: #ff9ea9;"
+                             "}");
 
     QFont buttonFont("Calibri", 20);
     yesButton->setFont(buttonFont);
@@ -110,9 +157,12 @@ void FlashcardWindow::handleStudyButtonClicked()
 
     // Create a QVBoxLayout to arrange the large button and the QHBoxLayout vertically
     QVBoxLayout *mainLayout = new QVBoxLayout(ui->centralWidget);
-    mainLayout->addWidget(flashcardButton);
-    mainLayout->addLayout(buttonsLayout); // Add the QHBoxLayout containing the smaller buttons
-    mainLayout->addStretch(); // Add stretch to push the buttons to the top
+    mainLayout->setAlignment(Qt::AlignHCenter);
+    mainLayout->addStretch();
+    mainLayout->addWidget(flipButton, 0, Qt::AlignCenter);
+    mainLayout->addSpacing(10);
+    mainLayout->addLayout(buttonsLayout);
+    mainLayout->addStretch();
 
     // Set the layout for the central widget
     ui->centralWidget->setLayout(mainLayout);

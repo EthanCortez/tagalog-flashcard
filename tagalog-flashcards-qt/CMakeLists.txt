@@ -27,6 +27,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         flashcardsystem.cpp
         flashcard.h
         flashcard.cpp
+        json.hpp
+        flipbutton.h
+        flipbutton.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET tagalog-flashcards-qt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
