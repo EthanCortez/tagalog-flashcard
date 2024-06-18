@@ -1,2 +1,4 @@
 # tagalog-flashcard
-QT application which utilizes spaced repetition to help people learn tagalog. Very work in progress.
+QT application which utilizes flashcards with spaced repetition to help people learn tagalog.
+
+To use: add json to the same directory as the executable.
