@@ -1,10 +1,122 @@
 [
     {
+        "answer": "How are you?",
+        "nextReviewDate": "",
         "question": "Kumusta",
-        "answer": "How are you?"
+        "reviewInterval": 1
     },
     {
+        "answer": "Welcome",
+        "nextReviewDate": "",
         "question": "Mabuhay",
-        "answer": "Welcome"
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Thank you",
+        "nextReviewDate": "",
+        "question": "Salamat",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Goodbye",
+        "nextReviewDate": "",
+        "question": "Paalam",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Yes",
+        "nextReviewDate": "",
+        "question": "Oo",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "No",
+        "nextReviewDate": "",
+        "question": "Hindi",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Please",
+        "nextReviewDate": "",
+        "question": "Pakiusap",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Sorry",
+        "nextReviewDate": "",
+        "question": "Pasensya",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Good morning",
+        "nextReviewDate": "",
+        "question": "Magandang umaga",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Good afternoon",
+        "nextReviewDate": "",
+        "question": "Magandang hapon",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Good evening",
+        "nextReviewDate": "",
+        "question": "Magandang gabi",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "I love you",
+        "nextReviewDate": "",
+        "question": "Mahal kita",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Friend",
+        "nextReviewDate": "",
+        "question": "Kaibigan",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Food",
+        "nextReviewDate": "",
+        "question": "Pagkain",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Water",
+        "nextReviewDate": "",
+        "question": "Tubig",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Family",
+        "nextReviewDate": "",
+        "question": "Pamilya",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "House",
+        "nextReviewDate": "",
+        "question": "Bahay",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "School",
+        "nextReviewDate": "",
+        "question": "Paaralan",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Beautiful",
+        "nextReviewDate": "",
+        "question": "Maganda",
+        "reviewInterval": 1
+    },
+    {
+        "answer": "Happy",
+        "nextReviewDate": "",
+        "question": "Masaya",
+        "reviewInterval": 1
     }
 ]
