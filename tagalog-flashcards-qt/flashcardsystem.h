@@ -1,21 +1,17 @@
 #ifndef FLASHCARDSYSTEM_H
 #define FLASHCARDSYSTEM_H
 
+#include <QDateTime>
 #include "flashcard.h"
-#include "json.hpp"
-
-using nlohmann::json;
 
 class FlashcardSystem {
 public:
 
     // Methods for managing flashcards
-    static void addFlashcard(std::string question, std::string answer);
-    static Flashcard getFlashcard(int index);
-
+    void addFlashcard(std::string question, std::string answer, std::string nextReviewDate, int reviewInterval);
+    Flashcard& getFlashcard(int index);
     void editFlashcard(int index, const Flashcard& flashcard);
-    void deleteFlashcard(int index);
-    void reviewFlashcard(int index, bool correct);
+    int size();
 
 private:
     static inline QVector<Flashcard> flashcards;

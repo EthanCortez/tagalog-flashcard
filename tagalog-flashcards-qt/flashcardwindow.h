@@ -21,14 +21,22 @@ public:
 
 private slots:
     void loadStartPage();
-    void loadFlashcards();
     void handleStudyButtonClicked();
+    void handleYesButtonClicked();
+    void handleNoButtonClicked();
+    void loadFlashcards();
+    void addCards();
+    void serializer();
+    int cardsToStudy();
+    void fillIndexesVector();
 
 private:
 
     Ui::FlashcardWindow *ui;
-    FlashcardSystem flashcardSystem; // Flashcard System class
-    int currentCardIndex;       // Index of the currently displayed flashcard
+    FlashcardSystem flashcardSystem;    // Flashcard System class
+    QVector<int> indexesToStudy;        // Vector filled with indexes of cards whose review dates have passed
+    int randomIndex;                    // Randomly selected index from indexesToStudy
+
 };
 
 #endif // FLASHCARDWINDOW_H

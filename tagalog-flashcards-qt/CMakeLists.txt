@@ -30,6 +30,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         json.hpp
         flipbutton.h
         flipbutton.cpp
+        random_selector.h
+        clearLayout.h
+
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET tagalog-flashcards-qt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
