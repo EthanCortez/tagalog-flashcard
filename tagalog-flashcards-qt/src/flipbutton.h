@@ -13,9 +13,12 @@ public:
     void setQuestion(const QString& question);
     void setAnswer(const QString& answer);
 
+protected:
+    void enterEvent(QEnterEvent* event) override;
+    void leaveEvent(QEvent* event) override;
+
 private slots:
     void toggleText();
-
 
 private:
     QString question;

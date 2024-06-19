@@ -82,6 +82,7 @@ void FlashcardWindow::loadStartPage()
                                "    background-color: #5c80cc;"
                                "}");
 
+    studyButton->setCursor(Qt::PointingHandCursor);
     connect(studyButton, &QPushButton::clicked, this, &FlashcardWindow::handleStudyButtonClicked);
 
     // Create a new layout
@@ -126,7 +127,7 @@ void FlashcardWindow::loadStartPage()
                                       "    background-color: #ebfff9;"
                                       "}");
 
-
+        addCardsButton->setCursor(Qt::PointingHandCursor);
         connect(addCardsButton, &QPushButton::clicked, this, &FlashcardWindow::addCards);
         mainLayout->addWidget(addCardsButton, 0, Qt::AlignCenter);
     }
@@ -140,8 +141,6 @@ void FlashcardWindow::loadStartPage()
     // Set the layout for the central widget
     ui->centralWidget->setLayout(mainLayout);
 }
-
-
 
 
 
@@ -236,6 +235,7 @@ void FlashcardWindow::handleStudyButtonClicked()
                                  "    background-color: #befcb1;"
                                  "}");
 
+        yesButton->setCursor(Qt::PointingHandCursor);
         connect(yesButton, &QPushButton::clicked, this, &FlashcardWindow::handleYesButtonClicked);
 
         // Set style sheet for No Button
@@ -253,6 +253,7 @@ void FlashcardWindow::handleStudyButtonClicked()
                                 "    background-color: #ff9ea9;"
                                 "}");
 
+        noButton->setCursor(Qt::PointingHandCursor);
         connect(noButton, &QPushButton::clicked, this, &FlashcardWindow::handleNoButtonClicked);
 
         // Modify font for yes and no buttons
@@ -319,6 +320,7 @@ void FlashcardWindow::handleYesButtonClicked()
                                     "    background-color: #5c80cc;"
                                     "}");
 
+        goBackButton->setCursor(Qt::PointingHandCursor);
         connect(goBackButton, &QPushButton::clicked, this, &FlashcardWindow::loadStartPage);
 
         // Create a QVBoxLayout
@@ -362,6 +364,7 @@ void FlashcardWindow::handleYesButtonClicked()
                                  "    background-color: #befcb1;"
                                  "}");
 
+        yesButton->setCursor(Qt::PointingHandCursor);
         connect(yesButton, &QPushButton::clicked, this, &FlashcardWindow::handleYesButtonClicked);
 
         // Set style sheet for No Button
@@ -379,6 +382,7 @@ void FlashcardWindow::handleYesButtonClicked()
                                 "    background-color: #ff9ea9;"
                                 "}");
 
+        noButton->setCursor(Qt::PointingHandCursor);
         connect(noButton, &QPushButton::clicked, this, &FlashcardWindow::handleNoButtonClicked);
 
         // Modify font for yes and no buttons
@@ -442,6 +446,7 @@ void FlashcardWindow::handleNoButtonClicked()
                              "    background-color: #befcb1;"
                              "}");
 
+    yesButton->setCursor(Qt::PointingHandCursor);
     connect(yesButton, &QPushButton::clicked, this, &FlashcardWindow::handleYesButtonClicked);
 
     // Set style sheet for No Button
@@ -459,6 +464,7 @@ void FlashcardWindow::handleNoButtonClicked()
                             "    background-color: #ff9ea9;"
                             "}");
 
+    noButton->setCursor(Qt::PointingHandCursor);
     connect(noButton, &QPushButton::clicked, this, &FlashcardWindow::handleNoButtonClicked);
 
     // Modify font for yes and no buttons

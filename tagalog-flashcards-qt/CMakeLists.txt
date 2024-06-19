@@ -13,30 +13,27 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
-        main.cpp
-        flashcardwindow.cpp
-        flashcardwindow.h
-        flashcardwindow.ui
+        src/main.cpp
+        src/flashcardwindow.cpp
+        src/flashcardwindow.h
+        src/flashcardwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(tagalog-flashcards-qt
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        flashcardsystem.h
-        flashcardsystem.cpp
-        flashcard.h
-        flashcard.cpp
-
-        flipbutton.h
-        flipbutton.cpp
-        random_selector.h
-        clearLayout.h
+        src/flashcardsystem.h
+        src/flashcardsystem.cpp
+        src/flashcard.h
+        src/flashcard.cpp
+        src/flipbutton.h
+        src/flipbutton.cpp
+        src/random_selector.h
+        src/clearLayout.h
         resources.qrc
-
-
-
     )
+
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET tagalog-flashcards-qt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
