@@ -6,7 +6,11 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QPushButton>
-#include <fstream>
+#include <QFile>
+#include <QIODevice>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 FlashcardWindow::FlashcardWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -486,21 +490,39 @@ void FlashcardWindow::loadFlashcards()
 {
 
     // Read from json to load flashcards
-    std::ifstream inFile("test.json");
-    json cardarr;
-    inFile >> cardarr;
+    QFile file("../tagalog-flashcards-qt/data/data.json");
 
-    for (json::iterator it = cardarr.begin(); it != cardarr.end(); ++it)
-    {
-        std::string question = (*it)["question"].get<std::string>();
-        std::string answer = (*it)["answer"].get<std::string>();
-        std::string nextReviewDate = (*it)["nextReviewDate"].get<std::string>();
-        int reviewInterval = (*it)["reviewInterval"].get<int>();
-
-        flashcardSystem.addFlashcard(question, answer, nextReviewDate, reviewInterval);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "Failed to open JSON file:" << file.errorString();
+        return;
     }
 
-    inFile.close();
+    QByteArray jsonData = file.readAll();
+    file.close();
+
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qDebug() << "Failed to parse JSON:" << parseError.errorString();
+        return;
+    }
+
+    if (!jsonDoc.isArray()) {
+        qDebug() << "JSON document is not an array";
+        return;
+    }
+
+    QJsonArray cardArray = jsonDoc.array();
+    for (int i = 0; i < cardArray.size(); ++i) {
+        QJsonObject cardObject = cardArray[i].toObject();
+
+        QString question = cardObject["question"].toString();
+        QString answer = cardObject["answer"].toString();
+        QString nextReviewDate = cardObject["nextReviewDate"].toString();
+        int reviewInterval = cardObject["reviewInterval"].toInt();
+
+        flashcardSystem.addFlashcard(question.toStdString(), answer.toStdString(), nextReviewDate.toStdString(), reviewInterval);
+    }
 }
 
 void FlashcardWindow::addCards()
@@ -589,19 +611,26 @@ void FlashcardWindow::addCards()
 
 void FlashcardWindow::serializer()
 {
-    json cardArr;
+    QJsonArray cardArray;
 
-    int index = 0;
-
-    while (index < flashcardSystem.size())
-    {
-        cardArr.push_back(flashcardSystem.getFlashcard(index).toJson());
-        index++;
+    // Serialize each flashcard in flashcardSystem
+    for (int index = 0; index < flashcardSystem.size(); ++index) {
+        QJsonObject cardObject = flashcardSystem.getFlashcard(index).toJson();
+        cardArray.append(cardObject);
     }
 
-    std::ofstream outFile("test.json");
-    outFile << cardArr.dump(4);
-    outFile.close();
+    // Convert QJsonArray to QJsonDocument
+    QJsonDocument jsonDoc(cardArray);
+
+    // Write JSON data to file using QFile
+    QFile file("../tagalog-flashcards-qt/data/data.json");
+    if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "Failed to open JSON file for writing:" << file.errorString();
+        return;
+    }
+
+    file.write(jsonDoc.toJson());
+    file.close();
 }
 
 int FlashcardWindow::cardsToStudy()

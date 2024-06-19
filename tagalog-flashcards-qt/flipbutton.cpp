@@ -1,6 +1,5 @@
 #include "flipbutton.h"
 
-
 FlipButton::FlipButton()
     : QPushButton("", nullptr), question(""), answer("")
 {

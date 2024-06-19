@@ -27,11 +27,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         flashcardsystem.cpp
         flashcard.h
         flashcard.cpp
-        json.hpp
+
         flipbutton.h
         flipbutton.cpp
         random_selector.h
         clearLayout.h
+        resources.qrc
 
 
 

@@ -1,5 +1,4 @@
 #include "flashcardsystem.h"
-#include "flashcard.h"
 
 void FlashcardSystem::addFlashcard(std::string question, std::string answer, std::string nextReviewDate, int reviewInterval)
 {

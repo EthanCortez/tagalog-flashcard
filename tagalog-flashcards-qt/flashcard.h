@@ -3,9 +3,7 @@
 
 #include <QString>
 #include <QDateTime>
-#include "json.hpp"
-
-using nlohmann::json;
+#include <QJsonObject>
 
 class Flashcard {
 public:
@@ -21,7 +19,7 @@ public:
     void setReviewInterval(int reviewInterval);
     void review(bool correct);
 
-    json toJson() const;
+    QJsonObject toJson() const;
 
 private:
 

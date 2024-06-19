@@ -42,11 +42,12 @@ void Flashcard::review(bool correct) {
     nextReviewDate = QDateTime::currentDateTime().addSecs(reviewInterval * 30);
 }
 
-json Flashcard::toJson() const {
-    return json {
-        {"question", question.toStdString()},
-        {"answer", answer.toStdString()},
-        {"nextReviewDate", nextReviewDate.toString(Qt::ISODate).toStdString()},
-        {"reviewInterval", reviewInterval}
-    };
+QJsonObject Flashcard::toJson() const {
+
+    QJsonObject json;
+    json["question"] = question;
+    json["answer"] = answer;
+    json["nextReviewDate"] = nextReviewDate.toString(Qt::ISODate);
+    json["reviewInterval"] = reviewInterval;
+    return json;
 }
