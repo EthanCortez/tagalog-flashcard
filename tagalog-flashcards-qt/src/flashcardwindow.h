@@ -19,6 +19,13 @@ public:
     FlashcardWindow(QWidget *parent = nullptr);
     ~FlashcardWindow();
 
+    // Extra functions
+    void loadFlashcards();
+    void addCards();
+    void serializer();
+    void fillIndexesVector();
+    int cardsToStudy();
+
 private slots:
 
     // Page loaders
@@ -30,13 +37,6 @@ private slots:
     void handleStudyButtonClicked();
     void handleYesButtonClicked();
     void handleNoButtonClicked();
-
-    // Extra functions
-    void loadFlashcards();
-    void addCards();
-    void serializer();
-    void fillIndexesVector();
-    int cardsToStudy();
 
 private:
 

@@ -121,6 +121,14 @@ void FlashcardWindow::loadStartPage()
         mainLayout->addWidget(addCardsButton, 0, Qt::AlignCenter);
     }
 
+    if (count == 0) {
+        QLabel *noCardsLabel = new QLabel("No more cards available to add", this);
+        QFont noCardsFont("Calibri", 12);
+        noCardsLabel->setFont(noCardsFont);
+        noCardsLabel->setStyleSheet("color: #333333;");
+        mainLayout->addWidget(noCardsLabel, 0, Qt::AlignCenter);
+    }
+
     // Add more widgets
     mainLayout->addSpacing(20);
     mainLayout->addStretch();
@@ -313,7 +321,7 @@ void FlashcardWindow::loadFlashcards()
 {
 
     // Read from json to load flashcards
-    QFile file("../tagalog-flashcards-qt/data/data.json");
+    QFile file("data.json");
 
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << "Failed to open JSON file:" << file.errorString();
@@ -446,7 +454,7 @@ void FlashcardWindow::serializer()
     QJsonDocument jsonDoc(cardArray);
 
     // Write JSON data to file using QFile
-    QFile file("../tagalog-flashcards-qt/data/data.json");
+    QFile file("data.json");
     if (!file.open(QIODevice::WriteOnly)) {
         qDebug() << "Failed to open JSON file for writing:" << file.errorString();
         return;
