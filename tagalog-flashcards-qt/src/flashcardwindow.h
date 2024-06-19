@@ -20,15 +20,23 @@ public:
     ~FlashcardWindow();
 
 private slots:
+
+    // Page loaders
     void loadStartPage();
+    void loadCardPage();
+    void loadGoBackPage();
+
+    // Button handlers
     void handleStudyButtonClicked();
     void handleYesButtonClicked();
     void handleNoButtonClicked();
+
+    // Extra functions
     void loadFlashcards();
     void addCards();
     void serializer();
-    int cardsToStudy();
     void fillIndexesVector();
+    int cardsToStudy();
 
 private:
 

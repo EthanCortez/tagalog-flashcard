@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/images">
         <file>images/flag.png</file>
+        <file>images/rightgrayarrow.png</file>
+        <file>images/settings.png</file>
     </qresource>
 </RCC>
