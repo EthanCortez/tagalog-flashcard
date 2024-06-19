@@ -18,7 +18,7 @@ FlashcardWindow::FlashcardWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Load flashcards
+    // Load/parse flashcards
     loadFlashcards();
 
     // Set QMainWindow style
