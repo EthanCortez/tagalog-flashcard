@@ -1,7 +1,10 @@
 # tagalog-flashcard
 QT application which utilizes flashcards with spaced repetition to help people learn tagalog.
 
-To use: add json to the same directory as the executable.
+To use:
+1. Download tagalog-flashcards-qt.zip in the releases
+2. Extract the zip file
+3. Launch tagalog-flashcards-qt.exe
 
 Possible additions to application: (order from easiest to hardest)
   - Add button that can reset the progress of all the flashcards, add a double check to ensure users do not accidentally delete progress
