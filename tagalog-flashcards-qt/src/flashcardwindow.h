@@ -32,11 +32,15 @@ private slots:
     void loadStartPage();
     void loadCardPage();
     void loadGoBackPage();
+    void loadSettingsPage();
+    void loadConfirmPage();
+    void loadResetPage();
 
     // Button handlers
     void handleStudyButtonClicked();
     void handleYesButtonClicked();
     void handleNoButtonClicked();
+    void handleResetButtonClicked();
 
 private:
 

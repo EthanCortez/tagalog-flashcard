@@ -33,13 +33,11 @@ void Flashcard::review(bool correct) {
     if (correct) {
         // Increase the review interval (e.g., using a spaced repetition algorithm)
         reviewInterval *= 2;
+        nextReviewDate = QDateTime::currentDateTime().addSecs(reviewInterval * 30);
     } else {
         // Reset the review interval (e.g., review again soon)
         reviewInterval = 1;
     }
-
-    // Update the next review date based on the new review interval
-    nextReviewDate = QDateTime::currentDateTime().addSecs(reviewInterval * 30);
 }
 
 QJsonObject Flashcard::toJson() const {
